@@ -10,16 +10,24 @@ function App() {
       done: false},
     {content: 'Aller chercher les courses',
       done: false},
-    {content: 'Aller chercher les courses',
+    {content: 'Aller chercher la lessive',
       done: false},
   ]); 
+
+  //méthodes
+  const removedClickedHandler = index => {
+    const newsTasks = [...tasks];
+    newsTasks.splice(index, 1);
+    setTasks(newsTasks);
+  }
 
   //variables pour lister les taches dynamiquements 
   let tasksDisplayed = tasks.map((task, index) => (
     <Task
     done={task.done}
     content={task.content}
-    Key={index} 
+    Key={index}
+    delete={()=> removedClickedHandler(index)} 
     />
   ));
 
