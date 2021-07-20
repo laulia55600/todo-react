@@ -5,7 +5,7 @@ import Task from '../../components/Task/Task';
 function App() {
 
   //state
-  const [taskx, setTasks] = useState([
+  const [tasks, setTasks] = useState([
     {content: 'Aller chercher les courses',
       done: false},
     {content: 'Aller chercher les courses',
@@ -15,13 +15,13 @@ function App() {
   ]); 
 
   //variables pour lister les taches dynamiquements 
-  let tasksDisplayed = tasks.map((task, index) => {
+  let tasksDisplayed = tasks.map((task, index) => (
     <Task
     done={task.done}
     content={task.content}
     Key={index} 
     />
-  });
+  ));
 
   return (
     <div className={classes.App}>
