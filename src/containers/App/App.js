@@ -4,17 +4,11 @@ import Task from '../../components/Task/Task';
 
 function App() {
 
-  //state
-  const [tasks, setTasks] = useState([
-    {content: 'Aller chercher les courses',
-      done: false},
-    {content: 'Aller chercher les courses',
-      done: false},
-    {content: 'Aller chercher la lessive',
-      done: false},
-  ]); 
+  //states
+  const [tasks, setTasks] = useState([]);  
+  const [input, setInput] = useState('');
 
-  //méthodes
+  //Fonctions
   const removedClickedHandler = index => {
     const newsTasks = [...tasks];
     newsTasks.splice(index, 1);
@@ -27,8 +21,21 @@ function App() {
     setTasks(newsTasks);
   }
 
+  const submittedTaskHandler = event => {
+    //bloquer l'êvenement par defaut:l'envoi du formulaire 
+    event.preventDefault(); 
 
-  
+    const newTask = {
+      content: input,
+      done: false
+    }
+    setTasks([...tasks, newTask]);
+    setInput('');
+  }
+
+  const changedFormHandler = event => {
+    setInput(event.target.value);
+  }  
 
   //variables pour lister les taches dynamiquements 
   let tasksDisplayed = tasks.map((task, index) => (
@@ -48,8 +55,12 @@ function App() {
       </header>
 
       <div className={classes.add}>
-        <form>
-          <input type="text" placeholder="Que souhaitez-vous ajouter ?" />
+        <form onSubmit={(e) => submittedTaskHandler(e)}>
+          <input 
+          type="text"
+          value={input}
+          onChange={(e) => changedFormHandler(e)} 
+          placeholder="Que souhaitez-vous ajouter ?" />
           <button type="submit">
             Ajouter
           </button>
