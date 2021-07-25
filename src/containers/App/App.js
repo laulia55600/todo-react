@@ -21,13 +21,23 @@ function App() {
     setTasks(newsTasks);
   }
 
+  const changeDoneClickedHandler = (index, done) => {   
+    const newsTasks = [...tasks];
+    newsTasks[index].done = !tasks[index].done;
+    setTasks(newsTasks);
+  }
+
+
+  
+
   //variables pour lister les taches dynamiquements 
   let tasksDisplayed = tasks.map((task, index) => (
     <Task
     done={task.done}
     content={task.content}
-    Key={index}
-    delete={()=> removedClickedHandler(index)} 
+    Key={index}    
+    delete={()=> removedClickedHandler(index)}
+    changeDone={()=> changeDoneClickedHandler(index)}
     />
   ));
 
