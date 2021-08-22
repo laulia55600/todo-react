@@ -15,7 +15,7 @@ function App() {
     setTasks(newsTasks);
   }
 
-  const changeDoneClickedHandler = (index, done) => {   
+  const doneClickedHandler = (index, done) => {   
     const newsTasks = [...tasks];
     newsTasks[index].done = !tasks[index].done;
     setTasks(newsTasks);
@@ -43,8 +43,8 @@ function App() {
     done={task.done}
     content={task.content}
     Key={index}    
-    delete={()=> removedClickedHandler(index)}
-    changeDone={()=> changeDoneClickedHandler(index)}
+    removeClicked={()=> removedClickedHandler(index)}
+    doneClicked={()=> doneClickedHandler(index)}
     />
   ));
 
